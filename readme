@@ -1,85 +1,108 @@
+# CareerSense AI  
+## A Retrieval-Augmented Career Advisory System
 
-Hey there! 👋 I am a  uni student and this is my Career Advice App project! Built with Streamlit, Ollama, LangChain, LLMs, and a Vector DB. It's still a work-in-progress, but here's what I have so far! 🚀
+## Abstract
+CareerSense AI is a document-grounded career advisory system that applies retrieval-augmented generation (RAG) and agent-based large language model (LLM) workflows to provide personalised career guidance. The system evaluates user CVs, extracts structured insights, and conditions downstream career advice on both the CV content and retrieved external knowledge from a vector database.
 
-🎯 What does it do?
+This project is developed as an exploratory and applied study of LLM grounding, document-aware reasoning, and practical RAG system design.
 
-The app helps users get career advice using the power of LLMs. Right now, it has two main features:
+---
 
-CV Evaluator Agent 📋
+## Problem Statement
+Generic LLM-based career advice often lacks personalisation and grounding, resulting in vague or hallucinated recommendations. CareerSense AI addresses this limitation by:
 
-You can upload your CV.
+- Conditioning generation on user-specific documents (CVs)
+- Incorporating retrieval from a vector database to ground responses
+- Separating evaluation and advisory stages using agent-style workflows
 
-The agent reads it and rates it based on certain criteria.
+---
 
-Gives you tips to improve it!
+## System Overview
 
-Career Advice Chatbot 🤖
+The system operates in three primary stages:
 
-A chatbot that takes your evaluated CV.
+1. **CV Evaluation**
+   - The user uploads a CV.
+   - The system parses and analyses the document using an LLM.
+   - A structured evaluation is produced based on predefined criteria.
 
-Helps you with career advice based on your CV.
+2. **Context Retrieval**
+   - Relevant documents are retrieved from a vector database using semantic similarity.
+   - Retrieved context is used to ground subsequent responses.
 
-Uses a RAG system (retrieval-augmented generation) to pull in relevant info from a Vector DB.
+3. **Career Advisory**
+   - An LLM generates career advice conditioned on:
+     - The evaluated CV
+     - Retrieved contextual documents
+   - This improves relevance and reduces hallucination.
 
-🔮 Future Plans
+---
 
-I’ve got some big ideas for the next steps:
+## Core Features
 
-Integrate Reed.co.uk API 📊
+### CV Evaluation Agent
+- Accepts CVs in PDF or text format
+- Extracts structured information from unstructured documents
+- Provides qualitative feedback on CV quality
+- Identifies strengths, weaknesses, and improvement areas
 
-To pull live job postings and give tailored advice.
+### CV-Aware Career Advisor
+- Interactive chatbot interface
+- Uses retrieval-augmented generation
+- Grounds responses in both CV content and external knowledge
+- Produces context-aware career guidance
 
-Add News Search APIs 📰
+---
 
-So the bot can stay updated with the latest in the job market.
+## Architecture
 
-Improve RAG System 💾
+- **Frontend:** Streamlit
+- **Backend:** Python
+- **LLM Orchestration:** LangChain
+- **LLM Inference:** Ollama (local models)
+- **Vector Store:** LangChain-compatible vector database
+- **Paradigm:** Retrieval-Augmented Generation (RAG)
 
-Make the Vector DB even better with more data.
+The system is designed to be modular, enabling future extensions such as new agents, additional retrieval sources, or alternative LLM backends.
 
-⚙️ Tech Stack
+---
 
-Frontend: Streamlit 🖥️
+## Current Status
 
-LLMs: Ollama + LangChain 🧠
+- CV ingestion and evaluation implemented
+- Retrieval-augmented chatbot functional
+- Local LLM inference via Ollama
+- Ongoing development and refinement
 
-Backend: Python 🐍
+---
 
-Database: Vector DB (using LangChain) 📂
+## Planned Extensions
 
-RAG System: For better context retrieval 🔍
+- **Job Market Integration**
+  - Integration with the Reed.co.uk API to retrieve live job postings
+  - Tailored recommendations based on real-time listings
 
-🏗️ How it works
+- **External Knowledge Sources**
+  - Integration with news and labour market APIs
+  - Improved awareness of industry trends
 
-Upload your CV ➔ Evaluator Agent rates it ✅
+- **Retrieval Improvements**
+  - Expansion of the vector database
+  - Improved chunking and embedding strategies
 
-Chat with the bot ➔ Get advice based on your CV 🤝
+---
 
-(In future) ➔ Get job listings and market insights 🌐
+## Installation and Usage
 
-🚀 How to Run It Locally
+### Prerequisites
+- Python 3.9+
+- Ollama installed locally
 
-Clone the repo
+Install Ollama from:
+https://ollama.com/download
 
-Install dependencies:
-
+### Setup
+```bash
+git clone <repository-url>
+cd careersense-ai
 pip install -r requirements.txt
-
-you need ollama support too, so install it from here https://ollama.com/download
-
-You can use any model replace the model anmes in the code
-
-Run the app:
-
-streamlit run app.py
-
-Upload your CV and start chatting! 🎉
-
-🙏 A Little Note
-
-This is still in progress, and I’m learning as I go! 🛠️ If you’ve got any suggestions or ideas, feel free to open an issue or submit a PR. Let’s make this awesome together! 💪
-
-Thanks for checking this out! ❤️
-
-– trying to make sense of LLMs and life 😅
-
